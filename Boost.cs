@@ -26,12 +26,10 @@ public class Booster{
     {
         File.WriteAllText("logErrorsBooster.txt", "Error log: \r\n");
         IntPtr pActiveGuid = IntPtr.Zero;
-        // מעבירים 0 (IntPtr.Zero) כדי להגיד למערכת שאנחנו מתכוונים להגדרות של המשתמש הנוכחי
         uint result = PowerGetActiveScheme(IntPtr.Zero, out pActiveGuid);
 
         if (result == 0 && pActiveGuid != IntPtr.Zero)
         {
-            // ממירים את הפויינטר שקיבלנו מחלונות למבנה הנתונים של Guid ב-C#
             originalGuid = Marshal.PtrToStructure<Guid>(pActiveGuid);
         }
 
